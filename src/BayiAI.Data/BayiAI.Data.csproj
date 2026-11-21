@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>BayiAI.Data</RootNamespace>
+    <!-- EF Core komutlarinin (Add-Migration) bu sinif kutuphanesini baslangic projesi olarak calistirabilmesi icin -->
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
   <ItemGroup>
