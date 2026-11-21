@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BayiAI.Core/BayiAI.Core.csproj" />
+    <Project Path="src/BayiAI.Data/BayiAI.Data.csproj" />
+  </Folder>
+  <Folder Name="/database/">
+    <File Path="database/01_tablolar.sql" />
+    <File Path="database/02_ornek_veri.sql" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+    <File Path=".gitignore" />
+  </Folder>
+</Solution>

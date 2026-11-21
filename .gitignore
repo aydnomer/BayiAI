@@ -424,3 +424,13 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+## --- BayiAI ---
+## Gizli ayarlar (bağlantı dizesi, API anahtarı)
+appsettings.json
+appsettings.*.json
+!appsettings.example.json
+
+## LocalDB veritabanı dosyaları
+*.mdf
+*.ldf
