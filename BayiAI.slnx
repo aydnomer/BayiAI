@@ -6,6 +6,7 @@
   <Folder Name="/database/">
     <File Path="database/01_tablolar.sql" />
     <File Path="database/02_ornek_veri.sql" />
+    <Project Path="src/BayiAI.Business/BayiAI.Business.csproj" Id="fd318f97-2885-43a1-bf75-1622d1209bad" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
