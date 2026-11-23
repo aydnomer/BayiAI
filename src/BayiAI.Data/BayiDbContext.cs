@@ -35,6 +35,10 @@ public class BayiDbContext : DbContext
     public DbSet<IslemLog> IslemLoglari => Set<IslemLog>();
     public DbSet<AiIslem> AiIslemleri => Set<AiIslem>();
 
+    // DbSet: C# tarafında tabloya erişim kapısı. db.FirmaAyarlari ile FirmaAyar tablosuna ulaşırız.
+    public DbSet<FirmaAyar> FirmaAyarlari => Set<FirmaAyar>();
+    public DbSet<NumaraSerisi> NumaraSerileri => Set<NumaraSerisi>();
+
     protected override void ConfigureConventions(ModelConfigurationBuilder builder)
     {
         // Tüm para alanları varsayılan olarak decimal(18,2).

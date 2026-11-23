@@ -1,4 +1,4 @@
-using BayiAI.Core.Entities;
+﻿using BayiAI.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,6 +13,12 @@ public class KullaniciConfiguration : IEntityTypeConfiguration<Kullanici>
         b.Property(x => x.KullaniciAdi).HasMaxLength(50).IsRequired();
         b.Property(x => x.SifreHash).HasMaxLength(256).IsRequired();
         b.HasIndex(x => x.KullaniciAdi).IsUnique();
+
+        // YENİ: Kilit kolonları. Tabloda zaten kullanıcılar var; yeni kolon eklenince
+        // o satırlar boş kalmasın diye SQL'de DEFAULT değer veriyoruz.
+        // (KilitBitisTarihi ve SonGirisTarihi zaten null olabildiği için ayar gerekmez.)
+        b.Property(x => x.HataliGirisSayisi).HasDefaultValue(0);
+        b.Property(x => x.SifreDegistirmeli).HasDefaultValue(false);
     }
 }
 
