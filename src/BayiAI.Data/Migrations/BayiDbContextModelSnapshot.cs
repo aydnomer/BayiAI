@@ -310,6 +310,79 @@ namespace BayiAI.Data.Migrations
                     b.ToTable("Fatura", (string)null);
                 });
 
+            modelBuilder.Entity("BayiAI.Core.Entities.FirmaAyar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Adres")
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<string>("Eposta")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("KayitTarihi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSDATETIME()");
+
+                    b.Property<bool>("KritikStokUyarisi")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("Logo")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("SilindiMi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Telefon")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Unvan")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("VarsayilanKdvOrani")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<int>("VarsayilanVadeGun")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VergiDairesi")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("VergiNo")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FirmaAyar", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            KritikStokUyarisi = true,
+                            SilindiMi = false,
+                            Unvan = "BayiAI Demo Dağıtım A.Ş.",
+                            VarsayilanKdvOrani = 20m,
+                            VarsayilanVadeGun = 30
+                        });
+                });
+
             modelBuilder.Entity("BayiAI.Core.Entities.IslemLog", b =>
                 {
                     b.Property<int>("Id")
@@ -447,10 +520,18 @@ namespace BayiAI.Data.Migrations
                     b.Property<bool>("AktifMi")
                         .HasColumnType("bit");
 
+                    b.Property<int>("HataliGirisSayisi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<DateTime>("KayitTarihi")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("SYSDATETIME()");
+
+                    b.Property<DateTime?>("KilitBitisTarihi")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("KullaniciAdi")
                         .IsRequired()
@@ -459,6 +540,11 @@ namespace BayiAI.Data.Migrations
 
                     b.Property<byte>("Rol")
                         .HasColumnType("tinyint");
+
+                    b.Property<bool>("SifreDegistirmeli")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("SifreHash")
                         .IsRequired()
@@ -470,12 +556,117 @@ namespace BayiAI.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<DateTime?>("SonGirisTarihi")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("KullaniciAdi")
                         .IsUnique();
 
                     b.ToTable("Kullanici", (string)null);
+                });
+
+            modelBuilder.Entity("BayiAI.Core.Entities.NumaraSerisi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("KayitTarihi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("SYSDATETIME()");
+
+                    b.Property<string>("Kod")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Onek")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("SilindiMi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("SonNumara")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("Uzunluk")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("Yil")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Kod")
+                        .IsUnique();
+
+                    b.ToTable("NumaraSerisi", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kod = "BAY",
+                            Onek = "B",
+                            SilindiMi = false,
+                            SonNumara = 0,
+                            Uzunluk = (byte)4,
+                            Yil = 2026
+                        },
+                        new
+                        {
+                            Id = 2,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kod = "SIP",
+                            Onek = "SIP",
+                            SilindiMi = false,
+                            SonNumara = 0,
+                            Uzunluk = (byte)6,
+                            Yil = 2026
+                        },
+                        new
+                        {
+                            Id = 3,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kod = "IRS",
+                            Onek = "IRS",
+                            SilindiMi = false,
+                            SonNumara = 0,
+                            Uzunluk = (byte)6,
+                            Yil = 2026
+                        },
+                        new
+                        {
+                            Id = 4,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kod = "FTR",
+                            Onek = "FTR",
+                            SilindiMi = false,
+                            SonNumara = 0,
+                            Uzunluk = (byte)6,
+                            Yil = 2026
+                        },
+                        new
+                        {
+                            Id = 5,
+                            KayitTarihi = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Kod = "THS",
+                            Onek = "THS",
+                            SilindiMi = false,
+                            SonNumara = 0,
+                            Uzunluk = (byte)6,
+                            Yil = 2026
+                        });
                 });
 
             modelBuilder.Entity("BayiAI.Core.Entities.Sevkiyat", b =>
