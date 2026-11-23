@@ -12,4 +12,5 @@
     <File Path="README.md" />
     <File Path=".gitignore" />
   </Folder>
+  <Project Path="tests/BayiAI.Tests/BayiAI.Tests.csproj" Id="857436fb-c551-402e-82c4-b559f179474d" />
 </Solution>
